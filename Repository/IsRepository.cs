@@ -11,7 +11,7 @@ namespace Starship.Data.Repository {
 
         void Delete<T>(T entity) where T : class;
 
-        IQueryable Query(Type type);
+        IsDataSet GetDataSet(Type type);
         
         T Add<T>(T entity) where T : class;
         
@@ -21,8 +21,9 @@ namespace Starship.Data.Repository {
     }
 
     public static class IsRepositoryExtensions {
+
         public static IQueryable<T> Query<T>(this IsRepository context) where T : class {
-            return context.Query(typeof (T)) as IQueryable<T>;
+            return context.GetDataSet(typeof(T)) as IQueryable<T>;
         }
 
         public static T Find<T>(this IsRepository context, object id) where T : class {

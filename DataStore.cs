@@ -27,8 +27,8 @@ namespace Starship.Data {
             return Get(FindType(typeName));
         }
 
-        public static IQueryable Get(Type type) {
-            return Configuration.GetRepositoryForType(type).Query(type);
+        public static IsDataSet Get(Type type) {
+            return Configuration.GetRepositoryForType(type).GetDataSet(type);
         }
 
         public static T Add<T>(params T[] entities) where T : class {

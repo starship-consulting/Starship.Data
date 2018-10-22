@@ -41,7 +41,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Logbook.Library.Extensions
+namespace Starship.Data.Extensions
 {
   /// <summary>
   /// The EntityDataReader wraps a collection of CLR objects in a DbDataReader.  

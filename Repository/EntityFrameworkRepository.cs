@@ -26,9 +26,13 @@ namespace Starship.Data.Repository {
             Context.Set(entity.GetType()).Remove(entity);
         }
 
-        public IQueryable Query(Type type) {
-            return Context.Set(type);
+        public IsDataSet GetDataSet(Type type) {
+            return new EntityFrameworkDataSet(Context.Set(type));
         }
+
+        /*public IQueryable Query(Type type) {
+            return Context.Set(type);
+        }*/
 
         public T Add<T>(T entity) where T : class {
             Context.Set<T>().Add(entity);
@@ -38,7 +42,7 @@ namespace Starship.Data.Repository {
         public object Find(Type type, object id) {
             return Context.Set(type).Find(id);
         }
-        
+
         public TProperty Load<T, TProperty>(T entity, Expression<Func<T, TProperty>> property) where T : class where TProperty : class {
             throw new NotImplementedException();
         }

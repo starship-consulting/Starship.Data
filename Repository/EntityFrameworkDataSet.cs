@@ -54,6 +54,10 @@ namespace Starship.Data.Repository {
             return this;
         }
 
+        IsDataSet IsDataSet.Include(params string[] paths) {
+            return Include(paths);
+        }
+
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }

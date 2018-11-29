@@ -16,11 +16,11 @@ namespace Starship.Data {
         }
         
         public static IQueryable<T> Get<T>(Expression<Func<T, bool>> criteria) where T : class {
-            return Configuration.GetRepositoryForType(typeof(T)).Query<T>().Where(criteria);
+            return Configuration.GetRepositoryForType(typeof(T)).Get<T>().Where(criteria);
         }
 
         public static IQueryable<T> Get<T>() where T : class {
-            return Configuration.GetRepositoryForType(typeof(T)).Query<T>();
+            return Configuration.GetRepositoryForType(typeof(T)).Get<T>();
         }
 
         public static IQueryable Get(string typeName) {
@@ -28,7 +28,7 @@ namespace Starship.Data {
         }
 
         public static IsDataSet Get(Type type) {
-            return Configuration.GetRepositoryForType(type).GetDataSet(type);
+            return Configuration.GetRepositoryForType(type).Get(type);
         }
 
         public static T Add<T>(params T[] entities) where T : class {

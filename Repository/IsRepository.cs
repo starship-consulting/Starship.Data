@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Starship.Core.Context;
+using Starship.Core.Extensions;
 
 namespace Starship.Data.Repository {
     
@@ -11,23 +11,31 @@ namespace Starship.Data.Repository {
 
         void Delete<T>(T entity) where T : class;
 
-        IsDataSet GetDataSet(Type type);
+        IsDataSet<T> Get<T>() where T : class;
         
         T Add<T>(T entity) where T : class;
         
-        object Find(Type type, object id);
+        object Find<T>(object id) where T : class;
 
         IEnumerable<Type> GetTypes();
     }
 
     public static class IsRepositoryExtensions {
 
-        public static IQueryable<T> Query<T>(this IsRepository context) where T : class {
-            return context.GetDataSet(typeof(T)) as IQueryable<T>;
+        public static IsDataSet Get(this IsRepository repository, Type type) {
+            return repository.InvokeGenericMethod("Get", type) as IsDataSet;
         }
 
-        public static T Find<T>(this IsRepository context, object id) where T : class {
-            return context.Find(typeof(T), id) as T;
+        public static IsDataSet Find(this IsRepository repository, Type type, object id) {
+            return repository.InvokeGenericMethod("Find", type, id) as IsDataSet;
         }
+
+        /*public static IQueryable<T> Query<T>(this IsRepository context) where T : class {
+            return context.GetDataSet<T>() as IQueryable<T>;
+        }*/
+
+        /*public static T Find<T>(this IsRepository context, object id) where T : class {
+            return context.Find(typeof(T), id) as T;
+        }*/
     }
 }

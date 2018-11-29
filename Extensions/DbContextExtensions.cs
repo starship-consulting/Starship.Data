@@ -5,12 +5,25 @@ using System.Data.Entity.Core.Mapping;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using Starship.Core.Extensions;
 using Starship.Core.Utility;
+using Starship.Data.Utilities;
 
 namespace Starship.Data.Extensions {
     public static class DbContextExtensions {
+        
+        public static IQueryable<T> AnonymousProjection<T>(this DbContext context, Expression<Func<ProjectionWrapper, T>> projection) where T : class {
+            var type = context.GetTypes().First();
+            return typeof(DbContextExtensions).InvokeStaticGenericMethod("AnonymousProjectionInternal", type, typeof(T), new object[] { context, projection }) as IQueryable<T>;
+        }
+        
+        // ReSharper disable once UnusedMember.Local (Invoked via reflection)
+        private static IQueryable<OUT> AnonymousProjectionInternal<IN, OUT>(this DbContext context, Expression<Func<ProjectionWrapper, OUT>> projection) where IN : class {
+            return context.Set<IN>().DefaultIfEmpty().GroupBy(each => true).Select(each => new ProjectionWrapper{}).Select(projection);
+        }
+
         public static List<Type> GetConfiguredTypes(this DbModelBuilder builder) {
             return builder.Configurations.GetFieldValue<object>("_modelConfiguration").GetPropertyValue<IEnumerable<Type>>("ConfiguredTypes").ToList();
         }

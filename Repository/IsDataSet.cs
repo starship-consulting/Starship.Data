@@ -6,7 +6,7 @@ namespace Starship.Data.Repository {
         IsDataSet Include(params string[] paths);
     }
 
-    public interface IsDataSet<out T> : IQueryable<T> {
-        IsDataSet<T> Include(params string[] paths);
+    public interface IsDataSet<out T> : IsDataSet, IQueryable<T> {
+        new IsDataSet<T> Include(params string[] paths);
     }
 }

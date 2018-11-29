@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using Starship.Data.Extensions;
 
 namespace Starship.Data.Repository {
-    public class EntityFrameworkRepository<R> : IsRepository where R : DbContext, new() {
+    public class EntityFrameworkCoreRepository<R> : IsRepository where R : DbContext, new() {
         
-        public EntityFrameworkRepository() {
+        public EntityFrameworkCoreRepository() {
             Id = Guid.NewGuid();
             Context = new R();
         }
@@ -20,13 +20,14 @@ namespace Starship.Data.Repository {
         public void Commit() {
             Context.SaveChanges();
         }
-
+        
         public void Delete<T>(T entity) where T : class {
-            Context.Set(entity.GetType()).Remove(entity);
+            //Context.GetType().InvokeStaticMethod("Set", entity.GetType())
+            Context.Set<T>().Remove(entity);
         }
 
         public IsDataSet<T> Get<T>() where T : class {
-            return new EntityFrameworkDataSet<T>(Context.Set<T>());
+            return new EntityFrameworkCoreDataSet<T>(Context.Set<T>());
         }
 
         /*public IQueryable Query(Type type) {

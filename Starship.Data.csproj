@@ -145,6 +145,7 @@
   <ItemGroup>
     <Compile Include="AccessControl\AccessControlLevels.cs" />
     <Compile Include="Attributes\IncludeAttribute.cs" />
+    <Compile Include="Configuration\DataSettings.cs" />
     <Compile Include="Configuration\DataStoreConfiguration.cs" />
     <Compile Include="Converters\SpreadsheetConverter.cs" />
     <Compile Include="DataStore.cs" />

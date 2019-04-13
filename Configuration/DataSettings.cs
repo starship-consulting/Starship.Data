@@ -33,8 +33,6 @@ namespace Starship.Data.Configuration {
 
         public string OwnerIdPropertyName { get; set; }
 
-        public string SystemOwnerName { get; set; }
-
         public string TypePropertyName { get; set; }
 
         public string SoftDeletionPropertyName { get; set; }

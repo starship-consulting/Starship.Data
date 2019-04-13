@@ -147,6 +147,7 @@
     <Compile Include="Attributes\IncludeAttribute.cs" />
     <Compile Include="Configuration\DataSettings.cs" />
     <Compile Include="Configuration\DataStoreConfiguration.cs" />
+    <Compile Include="Configuration\GlobalDataSettings.cs" />
     <Compile Include="Converters\SpreadsheetConverter.cs" />
     <Compile Include="DataStore.cs" />
     <Compile Include="Extensions\DbContextExtensions.cs" />

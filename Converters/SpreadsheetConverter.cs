@@ -44,7 +44,13 @@ namespace Starship.Data.Converters {
 
                 if(index == 1) {
                     foreach (DataColumn column in table.Columns) {
-                        columns.Add(column.ColumnName, datarow[column].ToString());
+                        var name = datarow[column].ToString().ToLower();
+
+                        if(string.IsNullOrEmpty(name)) {
+                            continue;
+                        }
+
+                        columns.Add(column.ColumnName, name);
                     }
 
                     continue;

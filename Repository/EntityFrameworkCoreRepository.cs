@@ -55,6 +55,10 @@ namespace Starship.Data.Repository {
             return Id.ToString();
         }
 
+        public void SetId(object value) {
+            Id = (Guid)value;
+        }
+
         public Guid Id { get; set; }
 
         private DbContext Context { get; set; }

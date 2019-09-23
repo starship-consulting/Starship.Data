@@ -152,9 +152,12 @@
     <Compile Include="Configuration\GlobalDataSettings.cs" />
     <Compile Include="Converters\SpreadsheetConverter.cs" />
     <Compile Include="DataStore.cs" />
+    <Compile Include="Entities\DocumentEntity.cs" />
+    <Compile Include="EventSourcing\EntityEventInterceptor.cs" />
     <Compile Include="Extensions\DbContextExtensions.cs" />
     <Compile Include="Extensions\DbCoreContextExtensions.cs" />
     <Compile Include="Extensions\EntityDataReader.cs" />
+    <Compile Include="Interfaces\IsDataInterceptor.cs" />
     <Compile Include="Interfaces\IsDeletable.cs" />
     <Compile Include="OData\IsQueryInvoker.cs" />
     <Compile Include="OData\ODataClientContext.cs" />
@@ -164,6 +167,7 @@
     <Compile Include="OData\ODataQueryProvider.cs" />
     <Compile Include="Repository\EntityFrameworkCoreRepository.cs" />
     <Compile Include="Repository\EntityFrameworkCoreDataSet.cs" />
+    <Compile Include="Services\SecureDataRepository.cs" />
     <Compile Include="Utilities\ProjectionWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EntityFrameworkDataSet.cs" />

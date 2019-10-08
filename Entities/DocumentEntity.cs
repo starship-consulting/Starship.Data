@@ -84,6 +84,10 @@ namespace Starship.Data.Entities {
             Participants = accountClaims.ToList();
         }
 
+        public object ConvertTo(Type type) {
+            return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(this), type);
+        }
+
         [JsonProperty(PropertyName="id")]
         public string Id {
             get => Get<string>("id");
